@@ -34,9 +34,19 @@ def search_by_date(date):
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    tupled_results = []
+    insensitive_tag = {"tags": {"$regex": tag, "$options": "i"}}
+    results = search_news(insensitive_tag)
+    for result in results:
+        tupled_results.append((result["title"], result["url"]))
+    return tupled_results
 
 
 # Requisito 9
 def search_by_category(category):
-    """Seu código deve vir aqui"""
+    tupled_results = []
+    insensitive_category = {"category": {"$regex": category, "$options": "i"}}
+    results = search_news(insensitive_category)
+    for result in results:
+        tupled_results.append((result["title"], result["url"]))
+    return tupled_results
